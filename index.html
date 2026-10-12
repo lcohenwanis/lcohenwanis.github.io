@@ -1,0 +1,274 @@
+---
+layout: default
+---
+{%- comment -%}
+  Content lives in _data/*.yml and _config.yml. You should rarely need to edit
+  this file: add papers to _data/publications.yml and projects to
+  _data/projects.yml, and their sections appear here by themselves.
+{%- endcomment -%}
+{%- assign papers = site.data.publications -%}
+{%- assign projects = site.data.projects -%}
+{%- assign has_papers = false -%}
+{%- assign has_projects = false -%}
+{%- if papers and papers.size > 0 -%}{%- assign has_papers = true -%}{%- endif -%}
+{%- if projects and projects.size > 0 -%}{%- assign has_projects = true -%}{%- endif -%}
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav" aria-label="Sections">
+      <a href="#research">Research</a>
+      {%- if has_papers %}
+      <a href="#papers">Papers</a>
+      {%- endif %}
+      {%- if has_projects %}
+      <a href="#projects">Projects</a>
+      {%- endif %}
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="hero-body">
+      <div class="hero-text">
+        <h1>Luc <span>Cohen-Wanis</span></h1>
+        <p class="lede">I use statistics to study who gets hired into academia, and who leaves.</p>
+        <p class="hero-note">
+          I'm a PhD student in Complex Systems and Data Science at the University of Vermont,
+          and a member of the <a href="{{ site.lab_url }}">{{ site.lab_name }}</a>.
+        </p>
+        <ul class="hero-links">
+          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <li><a href="https://github.com/{{ site.github }}">GitHub</a></li>
+          {%- if site.google_scholar %}
+          <li><a href="{{ site.google_scholar }}">Google Scholar</a></li>
+          {%- endif %}
+        </ul>
+      </div>
+      <img class="portrait" src="{{ '/assets/img/luc-cohen-wanis.jpg' | relative_url }}"
+           width="960" height="960"
+           alt="Luc Cohen-Wanis smiling with his arms crossed, standing in front of goldenrod in bloom.">
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="band" id="research" aria-labelledby="research-h">
+    <div class="wrap split">
+      <h2 id="research-h">Research</h2>
+      <div class="prose">
+        <p>
+          My research is in applied statistics and quantitative social science. With
+          Professor Sam Zhang, I'm working to uncover patterns in faculty hiring and
+          attrition. More broadly, I'm interested in how data science and statistical
+          modeling can drive meaningful social impact.
+        </p>
+        <p>
+          That work happens in the <a href="{{ site.lab_url }}">{{ site.lab_name }}</a> at the
+          <a href="https://vermontcomplexsystems.org/">Vermont Complex Systems Institute</a>,
+          a group of mathematicians and data scientists modeling the human side of science.
+        </p>
+        <p>
+          Before the PhD I spent three years as a data scientist at Noblis, analyzing the
+          face image quality and facial recognition systems behind U.S. passport and visa
+          applications. I hold an MS in Statistics from the University of Vermont and a BS
+          in Mathematics from the University of California, Irvine.
+        </p>
+        <dl class="kit">
+          <dt>Methods</dt>
+          <dd>Machine learning, deep learning, statistical network analysis, natural language processing, computer vision</dd>
+          <dt>Tools</dt>
+          <dd>Python (scikit-learn, TensorFlow, pandas, NumPy), R, SAS, Tableau, Git</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  {%- if has_papers %}
+
+  <section class="band" id="papers" aria-labelledby="papers-h">
+    <div class="wrap split">
+      <h2 id="papers-h">Papers</h2>
+      <ol class="entries">
+        {%- for p in papers %}
+        <li>
+          <h3>{% if p.url %}<a href="{{ p.url }}">{{ p.title | escape }}</a>{% else %}{{ p.title | escape }}{% endif %}</h3>
+          <p>{{ p.authors | escape }}</p>
+          <p class="meta">
+            {%- if p.venue %}<cite>{{ p.venue | escape }}</cite>{% endif -%}
+            {%- if p.venue and p.year %}, {% endif -%}
+            {{- p.year -}}
+            {%- if p.note %} ({{ p.note | escape }}){% endif -%}
+          </p>
+          {%- if p.pdf or p.code %}
+          <p class="extras">
+            {%- if p.pdf %}<a href="{{ p.pdf }}">PDF</a>{% endif -%}
+            {%- if p.code %}<a href="{{ p.code }}">Code</a>{% endif -%}
+          </p>
+          {%- endif %}
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </section>
+  {%- endif %}
+
+  {%- if has_projects %}
+
+  <section class="band" id="projects" aria-labelledby="projects-h">
+    <div class="wrap split">
+      <h2 id="projects-h">Projects</h2>
+      <ul class="entries">
+        {%- for p in projects %}
+        <li>
+          <h3>{% if p.url %}<a href="{{ p.url }}">{{ p.name | escape }}</a>{% else %}{{ p.name | escape }}{% endif %}</h3>
+          <p>{{ p.description | escape }}</p>
+          {%- if p.tools or p.year %}
+          <p class="meta">
+            {%- if p.tools %}{{ p.tools | join: ", " | escape }}{% endif -%}
+            {%- if p.tools and p.year %}, {% endif -%}
+            {{- p.year -}}
+          </p>
+          {%- endif %}
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+  {%- endif %}
+
+  <section class="band" id="experience" aria-labelledby="experience-h">
+    <div class="wrap split">
+      <h2 id="experience-h">Experience</h2>
+      <div>
+        {%- comment -%}
+          The chart reads each role's start and end from _data/experience.yml and
+          places its bar on a shared year axis. A role with no end runs to the
+          right edge and fades out.
+        {%- endcomment -%}
+        {%- assign roles = site.data.experience -%}
+        {%- assign months = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec" | split: "," -%}
+        {%- assign axis_start = 9999 -%}
+        {%- for r in roles -%}
+          {%- assign y = r.start | split: "-" | first | plus: 0 -%}
+          {%- if y < axis_start -%}{%- assign axis_start = y -%}{%- endif -%}
+        {%- endfor -%}
+        {%- assign axis_end = site.time | date: "%Y" | plus: 1 -%}
+        {%- assign span = axis_end | minus: axis_start %}
+
+        <figure class="path" style="--years: {{ span }}">
+          <figcaption>
+            Each role on one timeline, colored by kind.
+            <span class="legend">
+              <span><i class="swatch study"></i>Study</span>
+              <span><i class="swatch industry"></i>Industry</span>
+              <span><i class="swatch teaching"></i>Teaching</span>
+            </span>
+          </figcaption>
+          <ol class="path-rows">
+            {%- for r in roles -%}
+              {%- assign sp = r.start | split: "-" -%}
+              {%- assign s = sp[1] | minus: 1 | divided_by: 12.0 | plus: sp[0] -%}
+              {%- if r.end -%}
+                {%- assign ep = r.end | split: "-" -%}
+                {%- assign e = ep[1] | divided_by: 12.0 | plus: ep[0] -%}
+              {%- else -%}
+                {%- assign e = axis_end -%}
+              {%- endif -%}
+              {%- assign left = s | minus: axis_start | times: 100 | divided_by: span | round: 2 -%}
+              {%- assign width = e | minus: s | times: 100 | divided_by: span | round: 2 %}
+            <li class="path-row">
+              <span class="path-label">{{ r.org | escape }}<small>{{ r.role | split: "," | first | escape }}</small></span>
+              <span class="path-track" aria-hidden="true">
+                <span class="bar {{ r.kind }}{% unless r.end %} ongoing{% endunless %}" style="left: {{ left }}%; width: {{ width }}%"></span>
+              </span>
+            </li>
+            {%- endfor %}
+          </ol>
+          <div class="path-axis" aria-hidden="true">
+            <span class="path-label"></span>
+            <span class="path-ticks">
+              {%- for y in (axis_start..axis_end) -%}
+                {%- assign pos = y | minus: axis_start | times: 100.0 | divided_by: span | round: 2 %}
+              <span style="left: {{ pos }}%">{{ y }}</span>
+              {%- endfor %}
+            </span>
+          </div>
+        </figure>
+
+        <ol class="roles">
+          {%- for r in roles %}
+          <li>
+            <h3>{{ r.role | escape }}</h3>
+            <p class="meta">
+              {{ r.org | escape }}{% if r.place %}, {{ r.place | escape }}{% endif %}<br>
+              {%- if r.dates -%}
+                {{ r.dates | escape }}
+              {%- else -%}
+                {%- assign sp = r.start | split: "-" -%}
+                {%- assign m = sp[1] | minus: 1 -%}
+                {{ months[m] }} {{ sp[0] }} –{{ " " }}
+                {%- if r.end -%}
+                  {%- assign ep = r.end | split: "-" -%}
+                  {%- assign m = ep[1] | minus: 1 -%}
+                  {{ months[m] }} {{ ep[0] }}
+                {%- else -%}
+                  present
+                {%- endif -%}
+              {%- endif -%}
+            </p>
+            {%- if r.summary %}
+            <p>{{ r.summary | escape }}</p>
+            {%- endif %}
+            {%- if r.points %}
+            <ul>
+              {%- for pt in r.points %}
+              <li>{{ pt | escape }}</li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ol>
+
+        <h3 class="sub">Education</h3>
+        <ul class="degrees">
+          {%- for d in site.data.education %}
+          <li><strong>{{ d.degree | escape }}</strong><br>{{ d.school | escape }}{% if d.detail %}<br><span class="meta">{{ d.detail | escape }}</span>{% endif %}</li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="contact" aria-labelledby="contact-h">
+    <div class="wrap split">
+      <h2 id="contact-h">Contact</h2>
+      <div class="prose">
+        <p>
+          Email is the best way to reach me:
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>.
+        </p>
+        <ul class="plain">
+          <li><a href="https://github.com/{{ site.github }}">GitHub: {{ site.github }}</a></li>
+          <li><a href="{{ site.lab_url }}people/">My page at the {{ site.lab_name }}</a></li>
+          {%- if site.google_scholar %}
+          <li><a href="{{ site.google_scholar }}">Google Scholar</a></li>
+          {%- endif %}
+          {%- if site.orcid %}
+          <li><a href="{{ site.orcid }}">ORCID</a></li>
+          {%- endif %}
+          {%- if site.linkedin %}
+          <li><a href="{{ site.linkedin }}">LinkedIn</a></li>
+          {%- endif %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>© {{ site.time | date: "%Y" }} Luc Cohen-Wanis. Last updated {{ site.time | date: "%B %Y" }}.</p>
+  </div>
+</footer>

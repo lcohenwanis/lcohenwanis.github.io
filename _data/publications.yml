@@ -1,0 +1,23 @@
+# Papers. The Papers section and its menu link appear on the site as soon as
+# this file has at least one entry. Newest first.
+#
+# To add a paper, copy the example below, delete the "# " at the start of each
+# line, and fill it in. Keep the two-space indentation.
+#
+#   title    paper title
+#   authors  author list as it should read
+#   venue    journal, conference or preprint server
+#   year     publication year
+#   url      link to the paper (a DOI link is best)
+#   pdf      optional link to a PDF
+#   code     optional link to code or data
+#   note     optional short note, such as "Preprint" or "Under review"
+#
+# - title: "An example paper title"
+#   authors: "Luc Cohen-Wanis, Sam Zhang"
+#   venue: "Journal Name"
+#   year: 2027
+#   url: https://doi.org/10.0000/example
+#   pdf: https://arxiv.org/pdf/0000.00000
+#   code: https://github.com/lcohenwanis/example
+#   note: Preprint

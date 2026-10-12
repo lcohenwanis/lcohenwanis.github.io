@@ -1,0 +1,81 @@
+# Roles shown in the Experience chart and list, newest first.
+#
+#   role     what you did
+#   org      where
+#   place    optional, shown after the organization
+#   kind     study | industry | teaching   (sets the bar color)
+#   start    "YYYY-MM", in quotes
+#   end      "YYYY-MM", in quotes. Leave it out for a role you still hold.
+#   dates    optional text that replaces the automatic "Aug 2019 – Aug 2021"
+#   summary  one or two sentences
+#   points   optional list of highlights
+
+- role: PhD student, Complex Systems and Data Science
+  org: University of Vermont
+  place: Burlington, VT
+  kind: study
+  start: "2025-09"
+  dates: Fall 2025 – present
+  summary: >-
+    Member of the Science and Humanity Lab, directed by Sam Zhang, at the
+    Vermont Complex Systems Institute. Working on patterns in faculty hiring
+    and attrition.
+
+- role: Data Scientist
+  org: Noblis
+  place: remote
+  kind: industry
+  start: "2022-06"
+  end: "2025-09"
+  summary: >-
+    Biometrics analysis for the U.S. Department of State's Bureau of Consular
+    Affairs, covering the image quality and facial recognition systems used
+    for passport and visa applications.
+  points:
+    - >-
+      Recomputed facial recognition match thresholds using biometric standards
+      and machine learning, cutting image reviewers' workload by 50% with
+      minimal additional missed matches.
+    - >-
+      Ran a bias study of the facial recognition system, generating ROC
+      curves and simulating ISO differential performance metrics.
+    - >-
+      Led a market survey of face image quality assessment algorithms,
+      coordinating nearly 20 vendor demos and delivering recommendations to
+      senior leadership.
+    - >-
+      Managed two summer interns on a machine learning research project in
+      malware classification.
+
+- role: Graduate Teaching Assistant
+  org: University of Vermont
+  place: Burlington, VT
+  kind: teaching
+  start: "2021-08"
+  end: "2022-05"
+  summary: >-
+    Led classes and office hours for statistics courses, teaching students to
+    apply statistical methods in R and SAS.
+
+- role: Data Analyst
+  org: Kleer Data
+  place: Costa Mesa, CA
+  kind: industry
+  start: "2019-08"
+  end: "2021-08"
+  summary: >-
+    Built the pipeline that turned Google Analytics and Google Ads data into
+    digital marketing reports for healthcare clients, using Python and AWS
+    (Lambda, SQS, S3, EC2). Led more than 50 paid Tableau Desktop training
+    sessions for clients.
+
+- role: Tutor
+  org: Strive To Learn Tutoring
+  place: Newport Beach, CA
+  kind: teaching
+  start: "2016-08"
+  end: "2021-05"
+  summary: >-
+    Tutored high school and college students in calculus, physics, and SAT
+    and ACT prep, and wrote lesson notes for parents on each student's
+    progress.

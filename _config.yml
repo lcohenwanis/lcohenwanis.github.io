@@ -1,0 +1,22 @@
+# Site settings. Edit these, commit, and GitHub Pages rebuilds the site.
+
+title: Luc Cohen-Wanis
+description: >-
+  Luc Cohen-Wanis is a PhD student in Complex Systems and Data Science at the
+  University of Vermont, using statistics to study faculty hiring and attrition.
+url: https://lcohenwanis.github.io
+baseurl: ""
+
+# Contact links shown in the header and the Contact section.
+email: luc.cohen-wanis@uvm.edu
+github: lcohenwanis
+lab_name: Science and Humanity Lab
+lab_url: https://scienceandhumanitylab.github.io/
+# Optional. Paste a profile URL to make the link appear.
+google_scholar:
+orcid:
+linkedin:
+
+exclude:
+  - README.md
+  - LICENSE

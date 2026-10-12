@@ -1,0 +1,18 @@
+# Projects. The Projects section and its menu link appear on the site as soon
+# as this file has at least one entry. List them in the order you want shown.
+#
+# To add a project, copy the example below, delete the "# " at the start of
+# each line, and fill it in. Keep the two-space indentation.
+#
+#   name         project name
+#   description  one or two sentences on what it is and what you found
+#   url          link to the repository or write-up
+#   year         optional
+#   tools        optional list of methods or tools
+#
+# - name: "An example project"
+#   description: >-
+#     What the project asks, what data it uses, and what came out of it.
+#   url: https://github.com/lcohenwanis/example
+#   year: 2026
+#   tools: [Python, network analysis]
